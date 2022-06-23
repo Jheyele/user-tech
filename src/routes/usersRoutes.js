@@ -10,5 +10,6 @@ usersRoutes.post("/", userController.createUser);
 usersRoutes.get("/", userController.findAll);
 usersRoutes.get("/:id", userController.findUserById);
 usersRoutes.put("/:id", ensureAuth, userController.updateUser);
+usersRoutes.delete("/:id", ensureAuth, userController.deleteUser);
 
 export { usersRoutes };

@@ -97,4 +97,23 @@ export default class UserController {
 
     }
 
+    async deleteUser(req, res) {
+        const { id } = req.params;
+        try {
+            const userExist = await prismaClient.user.findUnique({ where: { id } });
+
+            if (!userExist) {
+                return res.status(400).json("This user is not registered");
+            }
+
+            const user = await prismaClient.user.delete({ where: { id } });
+            return res.status(202).json("User deleted");
+        } catch (err) {
+
+            return res.status(400).json("Invalid data");
+
+        }
+
+    }
+
 }
