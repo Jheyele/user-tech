@@ -6,7 +6,7 @@ export default class TechController {
 
         try {
 
-            const user = await prismaClient.tech.create({
+            const tech = await prismaClient.tech.create({
                 data: {
                     name,
                     nivel,
@@ -14,7 +14,7 @@ export default class TechController {
                 }
             })
 
-            return res.status(201).json(user);
+            return res.status(201).json(tech);
         } catch (err) {
             return res.status(400).json("Invalid data");
         }
@@ -36,7 +36,7 @@ export default class TechController {
                 return res.status(400).json("This tech is not registered");
             }
 
-            const user = await prismaClient.tech.update({
+            const tech = await prismaClient.tech.update({
                 where: {
                     id
                 },
@@ -47,7 +47,7 @@ export default class TechController {
                 }
             })
 
-            return res.status(200).json(user);
+            return res.status(200).json(tech);
         } catch (err) {
             return res.status(400).json("Invalid data");
         }
@@ -64,5 +64,19 @@ export default class TechController {
         })
 
         return res.status(200).json(techs);
+    }
+
+    async findTechById(req, res) {
+        const { id } = req.params;
+        try {
+            const tech = await prismaClient.tech.findUnique({
+                where: {
+                    id
+                }
+            })
+            return res.status(200).json(tech);
+        } catch (err) {
+            return res.status(400).json("Tech not found");
+        }
     }
 }
