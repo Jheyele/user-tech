@@ -59,7 +59,7 @@ export default class TechController {
 
         const techs = await prismaClient.tech.findMany({
             where: {
-                id_user
+                id_user: id_user
             }
         })
 
