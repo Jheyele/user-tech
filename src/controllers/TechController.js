@@ -79,4 +79,23 @@ export default class TechController {
             return res.status(400).json("Tech not found");
         }
     }
+
+    async deleteTech(req, res) {
+        const { id } = req.params;
+        try {
+            const techExist = await prismaClient.tech.findUnique({ where: { id } });
+
+            if (!techExist) {
+                return res.status(400).json("This tech is not registered");
+            }
+
+            const tech = await prismaClient.tech.delete({ where: { id } });
+            return res.status(202).json("User deleted");
+        } catch (err) {
+
+            return res.status(400).json("Invalid data");
+
+        }
+
+    }
 }

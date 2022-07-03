@@ -11,6 +11,7 @@ techsRoutes.get("/", ensureAuth, techController.findAllTechs);
 techsRoutes.get("/tech/:id", ensureAuth, techController.findTechById);
 techsRoutes.get("/techs-by-user/:id", ensureAuth, techController.findTechsByUser);
 techsRoutes.put("/:id", ensureAuth, techController.updateTech);
+techsRoutes.delete("/:id", ensureAuth, techController.deleteTech);
 
 
 export { techsRoutes };
