@@ -55,11 +55,11 @@ export default class TechController {
 
 
     async findTechsByUser(req, res) {
-        const { id_user } = req.params;
+        const { id } = req.params;
 
         const techs = await prismaClient.tech.findMany({
             where: {
-                id_user: id_user
+                id_user: id
             }
         })
 
