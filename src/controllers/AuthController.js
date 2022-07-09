@@ -18,7 +18,7 @@ export default class AuthController {
                 return res.status(401).json("Authentication failure");
             }
 
-            const token = jwt.sign({ id: userExist.id }, process.env.SECRET_KEY_JWT, { expiresIn: '2h' });
+            const token = jwt.sign({ id: userExist.id, name: userExist.name }, process.env.SECRET_KEY_JWT, { expiresIn: '2h' });
 
             const user = {
                 "id": userExist.id,
